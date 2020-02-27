@@ -28,9 +28,10 @@ HOVER_TEXT_DISCONNECTED = 'ultiracer is not connected. power-on device and selec
 #
 class Tray:
 
-    def __init__(self, file, argv):
+    def __init__(self, file, argv, bt=None):
         self.file = file
         self.argv = argv
+        self.bt = bt
         if  zBt.G_connected:
             self.icon = os.path.join(os.path.dirname(file), ICON_CONNECTED)
             self.hover = HOVER_TEXT_CONNECTED
@@ -64,14 +65,20 @@ class Tray:
 
     def on_restart(self, tray_icon):
         print(f'restart')
+        if  zBt.G_connected:
+            self.bt.quit()
         zUtil.restart_app(self.file, self.argv)
     
     def on_driver(self, tray_icon):
         print('driver')
+        if  zBt.G_connected:
+            self.bt.quit()
         zUtil.restart_app(self.driver, self.argv)
     
     def on_proxy(self, tray_icon):
         print('driver and proxy')
+        if  zBt.G_connected:
+            self.bt.quit()
         zUtil.restart_app(self.driver_proxy, self.argv)
     
     def on_hide(self, tray_icon):

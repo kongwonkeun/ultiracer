@@ -47,7 +47,7 @@ if  __name__ == '__main__':
     bt.connect(target=name)
     time.sleep(1)
 
-    tray = zTray.Tray(file, sys.argv)
+    tray = zTray.Tray(file, sys.argv, bt=bt)
     zUtil.hide_console()
 
     zUtil.wait_user_input()

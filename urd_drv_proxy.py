@@ -46,7 +46,7 @@ if  __name__ == '__main__':
     bt.connect(target=name)
     time.sleep(1)
 
-    tray = zTray.Tray(file, sys.argv)
+    tray = zTray.Tray(file, sys.argv, bt=bt)
 
     proxy = zProxy.WebSockServer()
     foobar = zPipe.PipeClient(pipe=zPipe.PIPE_FOOBAR, show=zPipe.SHOW_OFF, callback=proxy.send_message_to_all)
